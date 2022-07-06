@@ -38,10 +38,12 @@ InstallStartupHook(ItemName, ItemPos, MenuName)
 #Include, %A_ScriptDir%\Spanish.ahk
 ; Snippets to insert the current time and date
 #Include, %A_ScriptDir%\Timestamp.ahk
-; Personal Data that is secret
-#Include, %A_ScriptDir%\_secrets.ahk
 ; Open Source Autocorrect Module 
 #Include, %A_ScriptDir%\AutoCorrect.ahk
+; Personal Data that is secret
+#If FileExist("_secrets.ahk")
+	#Include, %A_ScriptDir%\_secrets.ahk
+#If
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Hibernate with Hotkey ;
