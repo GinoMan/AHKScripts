@@ -1,0 +1,112 @@
+﻿; Main Hotkey script. This script will allow for using snippets EVERYWHERE
+; UTF-8
+; cmd /e:on /c
+
+InstallFunc := Func("InstallStartupHook")
+Menu, Tray, Add, Install Launch On Startup Hook, % InstallFunc
+
+InstallStartupHook(ItemName, ItemPos, MenuName)
+{
+	; Install startup in system registry for current user
+	RegWrite, REG_SZ, HKCU\Software\Microsoft\Windows\CurrentVersion\Run, Hotkeys, start %A_ScriptFullPath%
+}
+
+; Starting Items
+#SingleInstance Force
+SendMode Input
+SetWorkingDir %A_ScriptDir%
+
+; Custom Commands By Hotkey
+; Queue based Clipboard for multi-copy and multi-paste
+ClipQueue := Array()
+StartedPasting := False
+
+^+c::
+	if(StartedPasting)
+	{
+		ClipQueue := []
+		StartedPasting := False
+	}
+	clipboard := ""
+	Send ^c
+	ClipQueue.Push(Clipboard)
+	TrayTip, % Format("There are now {1} items in Queue", ClipQueue.Count()), % Format("{1}", (ClipQueue[ClipQueue.Count()] != "") ? ClipQueue[ClipQueue.Count()] : "<empty>") , 1, 49
+return
+
+^+v::
+	if(ClipQueue.Count() > 0){
+		clipboard := ClipQueue.RemoveAt(0)
+		ClipWait
+		Send ^v
+		StartedPasting := True
+		TrayTip, % Format("There are now {1} items in Queue", ClipQueue.Count()), % Format("{1}", (ClipQueue[1] != "") ? ClipQueue[1] : "<empty>"), 1, 49
+	}
+return
+
+; Hibernate with Hotkey - Works!
+^#!F1::
+	Run *RunAs rundll32.exe powrprof.dll`,SetSuspendState Hibernate
+return
+
+; Reload the script with Hotkey - Works!
+>^R::
+	Reload
+return
+
+; Edit the Current Script using VSCode
+>^E::
+	SetTitleMatchMode, 2
+	IfWinNotExist, Autohotkey Scripts - Visual Studio Code
+	{
+		RunWait *RunAs code.exe %A_ScriptDir%
+	}
+	Else
+	{
+		WinActivate, Autohotkey Scripts - Visual Studio Code
+	}
+	SetTitleMatchMode, 1
+return
+
+; Snippets
+#Hotstring C O
+#Hotstring EndChars `t
+
+; Works
+::sci(tm)::science™
+::Sci(tm)::Science™
+
+; Spanish Characters
+::a*::á
+::A*::Á
+::e*::é
+::E*::É
+::i*::í
+::I*::Í
+::o*::ó
+::O*::Ó
+::u*::ú
+::U*::Ú
+::n~::ñ
+::N~::Ñ
+::!!::¡
+::??::¿
+
+; Timestamp Function
+::<now>::
+	FormatTime, CurrentDateTime,, M/d/yyyy h:mm tt  ; It will look like 9/1/2005 3:53 PM
+	SendInput %CurrentDateTime%
+return
+
+::<today>::
+	FormatTime, CurrentDate,, M/d/yyyy
+	SendInput %CurrentDate%
+return
+
+::<time>::
+	FormatTime, CurrentTime,, h:mm tt
+	SendInput %CurrentTime%
+return
+
+; Includes ;
+#Include, %A_ScriptDir%\_secrets.ahk
+#Include, %A_ScriptDir%\AutoCorrect.ahk

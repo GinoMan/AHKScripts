@@ -1,0 +1,31 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "AutoHotkey Attach (Advanced Configuration)",
+			"type": "autohotkey",
+			"request": "attach",
+			"hostname": "localhost",
+			"port": "9002-9010",
+			"variableCategories": "recommend",
+			"useDebugDirective": true,
+			"useAutoJumpToError": true,
+			"runtime": "AutoHotKey.exe",
+			"program": "${workspaceFolder}\\Hotkeys.ahk"
+		},
+		{
+			"name": "AutoHotkey Debug (Advanced Configuration)",
+			"type": "autohotkey",
+			"request": "launch",
+			"program": "${file}",
+			"args": [],
+			"port": "9002-9010",
+			"variableCategories": "recommend",
+			"useDebugDirective": true,
+			"useAutoJumpToError": true,
+			"runtime": "AutoHotkey.exe",
+			"cwd": "${workspaceFolder}",
+			"useLoadedScripts": true,
+		}
+	]
+}
