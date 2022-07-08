@@ -1,4 +1,4 @@
-; Contains hotkeys for reloading and editing the scripts
+﻿; Contains hotkeys for reloading and editing the scripts
 ; UTF-8
 ; cmd /e:on /c
 

@@ -1,4 +1,4 @@
-; Script containing date/time Snippets
+﻿; Script containing date/time Snippets
 ; UTF-8
 ; cmd /e:on /c
 

@@ -11,6 +11,21 @@
 SendMode Input
 SetWorkingDir %A_ScriptDir%
 
+; If the program is not running as admin, restart as admin
+full_command_line := DllCall("GetCommandLine", "str")
+
+if not (A_IsAdmin or RegExMatch(full_command_line, " /restart(?!\S)"))
+{
+	try
+	{
+		if A_IsCompiled
+			Run *RunAs "%A_ScriptFullPath%" /restart
+		else
+			Run *RunAs "%A_AhkPath%" /restart "%A_ScriptFullPath%"
+	}
+	ExitApp
+}
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Show a Toast notification that the listener has started ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -24,7 +39,8 @@ Menu, Tray, Add, Install Launch On Startup Hook, % InstallFunc
 InstallStartupHook(ItemName, ItemPos, MenuName)
 {
 	; Install startup in system registry for current user
-	RegWrite, REG_SZ, HKCU\Software\Microsoft\Windows\CurrentVersion\Run, Hotkeys, start %A_ScriptFullPath%
+	ScriptPath := Format("""{1}"" ""{2}""", A_AhkPath, A_ScriptFullPath)
+	RegWrite, REG_SZ, HKCU\Software\Microsoft\Windows\CurrentVersion\Run, Hotkeys, % ScriptPath
 }
 
 ;;;;;;;;;;;;

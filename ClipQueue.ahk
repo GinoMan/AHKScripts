@@ -1,4 +1,4 @@
-; Contains a sequential clipboard feature. Allows the user to copy multiple things and then paste them sequentially
+﻿; Contains a sequential clipboard feature. Allows the user to copy multiple things and then paste them sequentially
 ; rather than copying and then switching and then pasting multiple times.
 ; UTF-8
 ; cmd /e:on /c

@@ -1,4 +1,4 @@
-; Script containing Hotstrings to facilitate typing in Spanish
+﻿; Script containing Hotstrings to facilitate typing in Spanish
 ; UTF-8
 ; cmd /e:on /c
 
