@@ -1,6 +1,7 @@
 # Personal Autohotkey Scripts #
 
 [![Author - Gino Vincenzini](/Assets/Author-Gino%20Vincenzini-brightgreen.png)](https://ginovincenzini.com/)
+
 [![Lines of code](https://img.shields.io/tokei/lines/github/GinoMan/AHKScripts?label=Total%20Lines&logo=github&logoColor=white)](https://github.com/GinoMan/AHKScripts)
 [![GitHub License](https://img.shields.io/github/license/GinoMan/AHKScripts?label=License&logo=creativecommons&logoColor=white)](https://github.com/GinoMan/AHKScripts/blob/master/LICENSE)
 [![Platform AutoHotKey](https://img.shields.io/badge/Platform-AutoHotKey-green?logo=autohotkey&logoColor=white)](https://autohotkey.com)
