@@ -69,7 +69,7 @@ There is an external script referenced in the main script that was not written b
 
 ### AutoCorrect.ahk ###
 
-This script was created and posted on the [Autohotkey Forums][autoc]. I have downloaded it into this repository and referenced it in the main script.
+This script was created and posted on the [Autohotkey Forums][autoc]. I have [downloaded](https://raw.githubusercontent.com/cdelahousse/Autocorrect-AutoHotKey/master/AutoCorrect.ahk) it into this repository and referenced it in the main script.
 
 [ahk]: https://www.autohotkey.com/
 [autoc]: https://www.autohotkey.com/board/topic/7379-autoreplace/
